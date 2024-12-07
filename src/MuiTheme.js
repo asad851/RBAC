@@ -147,19 +147,21 @@ export const lightTheme = createTheme({
     },
   },
   components: {
+    
     MuiTypography: {
       styleOverrides: {
         root: {
-          color: '#502c65',   // Default color for Typography components
+          color: "#502c65", // Default color for Typography components
         },
       },
     },
     MuiSvgIcon: {
       styleOverrides: {
         root: {
-          color: '#7350a0',
-          '&:hover': {           // Example: style for icon hover state
-            color: '#4d2c65', // Color on hover
+          color: "#7350a0",
+          "&:hover": {
+            // Example: style for icon hover state
+            color: "#4d2c65", // Color on hover
           },
         },
       },
@@ -194,11 +196,11 @@ export const lightTheme = createTheme({
           textTransform: "none", // Disable uppercase transformation
           fontSize: "14px", // Custom font size
         },
-        
+
         outlinedPrimary: {
           background: "white",
         },
-        
+
         iconButton: {
           padding: "9px 11px",
           color: "#DFD6F9",
@@ -210,4 +212,3 @@ export const lightTheme = createTheme({
     },
   },
 });
-
