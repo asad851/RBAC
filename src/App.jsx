@@ -9,6 +9,7 @@ import {
   AuthProtectedUserRoutes,
 } from "./routes/index.jsx";
 import NonAuthLayout from "./components/Layout/NonAuthLayout.jsx";
+import {Authmiddleware,AuthUserMiddleWare} from "./components/Layout/RoleBasedAuthentication.jsx"
 import Layout from "./Components/Layout/Layout.jsx";
 import { useSelector } from "react-redux";
 import { LOGIN_PATH } from "./routes/route_names.js";
@@ -27,7 +28,7 @@ function App() {
               />
             ))}
 
-            {/* {AuthProtectedAdminRoutes.map((route, idx) => (
+            {AuthProtectedAdminRoutes.map((route, idx) => (
               <Route
                 path={route.path}
                 element={
@@ -37,7 +38,7 @@ function App() {
                 }
                 key={idx}
               />
-            ))} */}
+            ))}
 
             {/* {AuthProtectedUserRoutes.map((route, idx) => (
               <Route
