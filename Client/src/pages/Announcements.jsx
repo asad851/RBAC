@@ -99,7 +99,7 @@ function Announcements() {
   };
   return (
     <div className="w-full h-full p-5">
-      <div className="w-full flex justify-between items-center">
+      <div className="w-full flex justify-between items-center max-[450px]:flex-col gap-2">
         <Typography variant="h5">Announcements</Typography>
         <Tooltip
           title={
