@@ -7,9 +7,15 @@ import jwt from "jsonwebtoken";
 import bcrpyt from "bcrypt";
 import generateToken from "../utils/generateJwtToken.js";
 import dotenv from "dotenv";
-import { register } from "../controllers/authController.js";
+import {
+  register,
+  getAllUsers,
+  updateUserPermission,
+} from "../controllers/authController.js";
 dotenv.config();
 router.post("/login", loginController);
-router.post("/register",register)
+router.post("/register", register);
+router.get("/all", isAdmin, getAllUsers);
+router.post("/update", isAdmin, updateUserPermission);
 
 export default router;

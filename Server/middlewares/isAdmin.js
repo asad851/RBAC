@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { SECRET } from "../secrets.js";
-export default async function isSuperAdmin(req, res, next) {
+export default async function isAdmin(req, res, next) {
   try {
     let auth = req.headers.authorization;
     if (auth) {

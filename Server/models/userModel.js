@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema(
       enum: ["admin", "user"],
       required: true,
     },
+    permissions: { type: String },
     email: {
       type: String,
       required: true,
@@ -22,7 +23,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    
   },
   {
     timestamps: true, // This will add createdAt and updatedAt fields automatically

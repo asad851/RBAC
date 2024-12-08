@@ -1,8 +1,9 @@
 import { SECRET } from "../secrets.js";
-import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import generateToken from "../utils/generateJwtToken.js";
 import jwt from "jsonwebtoken";
+import isAdmin from "../middlewares/isAdmin.js";
+import User from "../models/userModel.js";
 export const loginController = async (req, res) => {
   try {
     let { email, password } = req.body;
@@ -24,6 +25,7 @@ export const loginController = async (req, res) => {
           name: userExist.name,
           email: userExist.email,
           role: userExist.role,
+          permission: userExist.permissions,
         };
         const token = generateToken(dataTojson, { expiresIn: "3d" });
         res
@@ -59,11 +61,20 @@ export const register = async (req, res) => {
         role: role,
         name,
       });
-
+      const updateUser = await User.findByIdAndUpdate(
+        user._id,
+        {
+          ...(role === "admin"
+            ? { permissions: "all" }
+            : { permissions: "read" }),
+        },
+        { new: true }
+      );
       const data = {
         name,
         role: user.role,
         email: user.email,
+        permission: updateUser.permissions,
       };
 
       let token = generateToken(data, { expiresIn: "2d" });
@@ -75,5 +86,35 @@ export const register = async (req, res) => {
     }
   } catch (err) {
     res.status(500).json({ errorMessage: "Internal server error!" });
+  }
+};
+
+export const getAllUsers = async (req, res) => {
+  try {
+    const Users = await User.find().select(
+      "-password -createdAt -updatedAt -__v"
+    );
+    res?.status(200).json({ errorMessage: null, data: Users });
+  } catch (err) {
+    res?.status(500).json({ errorMessage: "Internal server error!" });
+  }
+};
+
+export const updateUserPermission = async (req, res) => {
+  try {
+    const { email, permission } = req.body;
+    if (!email || !permission) {
+      return res
+        ?.status(500)
+        .json({ errorMessage: "Please provide sufficient data!" });
+    }
+    const updatedUser = await User.findOneAndUpdate(
+      { email },
+      { permissions: permission },
+      { new: true }
+    );
+    res.status(200).json({ errorMessage: null });
+  } catch (err) {
+    res?.status(500).json({ errorMessage: "Internal server error!" });
   }
 };
