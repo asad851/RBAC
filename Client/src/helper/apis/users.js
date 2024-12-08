@@ -47,7 +47,7 @@ export function useChangeUserPermissionApi() {
   const handleChangePermission = async (reqBody) => {
     try {
       const response = await post(UPDATE_PERMISSION, reqBody);
-      showError(`User permission changed successfully`, "success");
+      showError(`User permission updated successfully`, "success");
     } catch (err) {
       dispatch(setAllUsers(users));
       showError(err?.response?.data?.errorMessage, "error");
