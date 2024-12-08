@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  IconButton,
-  List,
-  ListItem,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { IconButton, List, ListItem, Tooltip, Typography } from "@mui/material";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import ScheduleRoundedIcon from "@mui/icons-material/ScheduleRounded";
 import MoreVertRoundedIcon from "@mui/icons-material/MoreVertRounded";
@@ -24,7 +18,11 @@ import {
   SwitchAccountOutlined,
   TextSnippetOutlined,
 } from "@mui/icons-material";
-import { ADMIN_ANNOUNCEMENTS, ADMIN_DASHBOARD } from "../../routes/route_names";
+import {
+  ADMIN_ANNOUNCEMENTS,
+  ADMIN_DASHBOARD,
+  USER_ANNOUNCEMENTS,
+} from "../../routes/route_names";
 import dayjs from "dayjs";
 import { toggleSideBar } from "../../store/layout/layout";
 
@@ -84,7 +82,7 @@ const SidebarItem = ({
         }}
         className={` cursor-pointer flex   gap-2 py-[16px!important] 
          hover:bg-white  rounded-full text-gray-600  ${
-           pathname.includes(text.toLowerCase()) && "bg-white "
+           pathname.includes(path) && "bg-white "
          }`}
       >
         <Icon fontSize={fontSize} />
@@ -132,7 +130,7 @@ function SideNav() {
                 gap: "5px",
               }}
             >
-              {user.role === "admin" && (
+              {user.role === "admin" ? (
                 <>
                   <SidebarItem
                     icon={GridViewOutlined}
@@ -145,6 +143,15 @@ function SideNav() {
                     text="Announcements"
                     pathname={location}
                     path={ADMIN_ANNOUNCEMENTS}
+                  />
+                </>
+              ) : (
+                <>
+                  <SidebarItem
+                    icon={CampaignOutlined}
+                    text="Announcements"
+                    pathname={location}
+                    path={USER_ANNOUNCEMENTS}
                   />
                 </>
               )}

@@ -9,12 +9,12 @@ import {
   setUserData,
 } from "../../store/authentication/login";
 import { useError } from "../../utils/ErrorHandler";
-import { ADMIN_DASHBOARD } from "../../routes/route_names";
+import { ADMIN_DASHBOARD, USER_ANNOUNCEMENTS } from "../../routes/route_names";
 import Cookies from "js-cookie";
 export function useLoginUserApi() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {showError} = useError() 
+  const { showError } = useError();
   const handleLogin = async (credentials) => {
     try {
       const response = await post(LOGIN, credentials);
@@ -33,10 +33,10 @@ export function useLoginUserApi() {
       if (userData.role === "admin") {
         navigate(ADMIN_DASHBOARD);
       } else {
-        navigate();
+        navigate(USER_ANNOUNCEMENTS);
       }
     } catch (err) {
-        showError(err?.response?.data?.errorMessage,"error")
+      showError(err?.response?.data?.errorMessage, "error");
     }
   };
   return { handleLogin };

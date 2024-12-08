@@ -127,7 +127,7 @@ export const crudOnAnnouncement = async (req, res) => {
       const newAnnouncement = await Announcement.create({
         announcement: data,
       });
-      res.status(200).json({ errorMessage: "null" });
+      res.status(200).json({ errorMessage: "null", data: newAnnouncement });
     } else if (action === "edit") {
       const updateAnnouncement = await Announcement.findByIdAndUpdate(
         id,

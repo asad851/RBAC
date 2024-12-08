@@ -41,7 +41,10 @@ function AdminDashboard() {
           const upperCasedName = el.name?.toUpperCase();
           return (
             el.role !== "admin" && (
-              <div className="p-5 w-full bg-gray-200 rounded-lg flex items-center justify-between">
+              <div
+                key={el._id}
+                className="p-5 w-full bg-gray-200 rounded-lg flex items-center justify-between"
+              >
                 <div className="flex items-center gap-4">
                   <Avatar
                     alt={upperCasedName}
