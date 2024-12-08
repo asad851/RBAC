@@ -45,3 +45,22 @@ export function useChangeUserPermissionApi() {
     handleChangePermission,
   };
 }
+
+export function useGetAnnouncementsApi() {
+  const getAnnouncement = async () => {
+    try {
+    } catch (err) {}
+  };
+  return {
+    getAnnouncement,
+  };
+}
+export function useUpdateAnnouncementApi() {
+  const updateAnnouncement = async () => {
+    try {
+    } catch (err) {}
+  };
+  return {
+    updateAnnouncement,
+  };
+}

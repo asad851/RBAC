@@ -23,7 +23,13 @@ function Announcements() {
         </Tooltip>
       </div>
       <div className="w-full mt-5 h-[90%] flex flex-col gap-5 border border-gray-200 rounded-lg ">
-        
+        <div className="w-full h-full px-3 py-5 narrow_scrollbar overflow-auto flex flex-col gap-5">
+          <div className="w-full p-5 rounded-lg bg-gray-200 shadow max-h-[300px] overflow-y-auto narrow_scrollbar">
+            <Typography variant="small1bold">
+              jsdjfbsdfbhdsudsgbvidvhdfvvfv
+            </Typography>
+          </div>
+        </div>
       </div>
     </div>
   );
