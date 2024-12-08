@@ -9,13 +9,17 @@ import {
   AuthProtectedUserRoutes,
 } from "./routes/index.jsx";
 import NonAuthLayout from "./components/Layout/NonAuthLayout.jsx";
-import {Authmiddleware,AuthUserMiddleWare} from "./components/Layout/RoleBasedAuthentication.jsx"
-import Layout from "./Components/Layout/Layout.jsx";
+import {
+  Authmiddleware,
+  AuthUserMiddleWare,
+} from "./components/Layout/RoleBasedAuthentication.jsx";
+import Layout from "./components/Layout/Layout.jsx";
 import { useSelector } from "react-redux";
 import { LOGIN_PATH } from "./routes/route_names.js";
+import { ErrorProvider } from "./utils/ErrorHandler.jsx";
 function App() {
   return (
-    <>
+    <ErrorProvider>
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
         <div className="w-full h-dvh bg-[#f9fafc]">
@@ -33,28 +37,28 @@ function App() {
                 path={route.path}
                 element={
                   <Authmiddleware>
-                    <Layout>{route.element}</Layout>
+                    <Layout>{<route.element />}</Layout>
                   </Authmiddleware>
                 }
                 key={idx}
               />
             ))}
 
-            {/* {AuthProtectedUserRoutes.map((route, idx) => (
+            {AuthProtectedUserRoutes.map((route, idx) => (
               <Route
                 path={route.path}
                 element={
                   <AuthUserMiddleWare>
-                    <Layout>{route.element}</Layout>
+                    <Layout>{<route.element />}</Layout>
                   </AuthUserMiddleWare>
                 }
                 key={idx}
               />
-            ))} */}
+            ))}
           </Routes>
         </div>
       </ThemeProvider>
-    </>
+    </ErrorProvider>
   );
 }
 

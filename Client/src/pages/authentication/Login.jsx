@@ -16,11 +16,10 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import LeftAuthPagePanel from "../../Components/authentication/LeftAuthPagePanel.jsx";
 import { useNavigate } from "react-router-dom";
-// import { UseLoginApi } from "../../Helper/Apis/Authentication";
+import { useLoginUserApi } from "../../helper/apis/auth.js";
 // import { REGISTER_PATH } from "../../Routes/route_names";
 function Login() {
-//   const { handleLogin } = UseLoginApi();
-  // const navigate = useNavigate();
+  const { handleLogin } = useLoginUserApi();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -32,7 +31,7 @@ function Login() {
   const handleMouseUpPassword = (event) => {
     event.preventDefault();
   };
-  
+
   const validation = useFormik({
     enableReinitialize: true,
 
@@ -45,17 +44,12 @@ function Login() {
         .required("Please Enter Your Email")
         .matches(
           /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/,
-          "Invalid email address",
+          "Invalid email address"
         ),
       password: Yup.string().required("Please Enter Your Password"),
     }),
     onSubmit: async (values) => {
-      const credentials = {
-        userId: values.email,
-        password: values.password,
-        role: "Student",
-      };
-      await LoginUser(credentials);
+      await handleLogin(values);
     },
   });
 

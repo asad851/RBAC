@@ -1,12 +1,11 @@
-@import '@fontsource/roboto/300.css';
-@import '@fontsource/roboto/400.css';
-@import '@fontsource/roboto/500.css';
-@import '@fontsource/roboto/700.css';
+@import "@fontsource/roboto/300.css";
+@import "@fontsource/roboto/400.css";
+@import "@fontsource/roboto/500.css";
+@import "@fontsource/roboto/700.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 :root {
   font-family: "Roboto", sans-serif;
@@ -22,4 +21,25 @@ body {
   height: 100%;
   background-color: #f9fafc;
   overflow: hidden;
+}
+
+.narrow_scrollbar {
+  overflow-y: auto;
+
+  scroll-behavior: smooth !important;
+
+  &::-webkit-scrollbar {
+    width: 7px !important;
+    height: 0px !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #dacefc;
+    border-radius: 6px;
+    height: 100px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: inherit;
+  }
 }
