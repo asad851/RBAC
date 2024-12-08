@@ -22,5 +22,5 @@ This project consists of two folders:
   npm run dev 
 
 ### USERS
-- User details are provided in user.json file
+- User details are provided in users.json file
 
