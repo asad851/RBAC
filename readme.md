@@ -19,7 +19,7 @@ This project consists of two folders:
 - To run the backend:
   ```bash
   cd Server
-  nodemon app.js   // if you already don't have nodemon installed you can use node index.js
+  npm run dev 
 
 ### USERS
 - User details are provided in user.json file
