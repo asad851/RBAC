@@ -19,5 +19,29 @@
     "name": "user2",
     "permissions": "edit",
     "password": "user1234"
+  },
+  {
+    "_id": "67559f8a252406107c65531b",
+    "role": "user",
+    "email": "user3@gmail.com",
+    "name": "user3",
+    "permissions": "read",
+    "password": "user1234"
+  },
+  {
+    "_id": "67559f93252406107c65531f",
+    "role": "user",
+    "email": "user4@gmail.com",
+    "name": "user4",
+    "permissions": "read",
+    "password": "user1234"
+  },
+  {
+    "_id": "67559ffb252406107c655325",
+    "role": "user",
+    "email": "user5@gmail.com",
+    "name": "user5",
+    "permissions": "read",
+    "password": "user1234"
   }
 ]
