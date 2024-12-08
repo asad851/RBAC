@@ -4,6 +4,7 @@ import generateToken from "../utils/generateJwtToken.js";
 import jwt from "jsonwebtoken";
 import isAdmin from "../middlewares/isAdmin.js";
 import User from "../models/userModel.js";
+import Announcement from "../models/announcementModel.js";
 export const loginController = async (req, res) => {
   try {
     let { email, password } = req.body;
@@ -116,5 +117,38 @@ export const updateUserPermission = async (req, res) => {
     res.status(200).json({ errorMessage: null });
   } catch (err) {
     res?.status(500).json({ errorMessage: "Internal server error!" });
+  }
+};
+
+export const crudOnAnnouncement = async (req, res) => {
+  try {
+    const { action, data, id } = req.body;
+    if (action === "create") {
+      const newAnnouncement = await Announcement.create({
+        announcement: data,
+      });
+      res.status(200).json({ errorMessage: "null" });
+    } else if (action === "edit") {
+      const updateAnnouncement = await Announcement.findByIdAndUpdate(
+        id,
+        { announcement: data },
+        { new: true }
+      );
+      res.status(200).json({ errorMessage: "null" });
+    } else {
+      const updateAnnouncement = await Announcement.findByIdAndDelete(id);
+      res.status(200).json({ errorMessage: "null" });
+    }
+  } catch (err) {
+    res.status(500).json({ errorMessage: "Internal server error" });
+  }
+};
+
+export const getAnnouncementController = async (req, res) => {
+  try {
+    const data = await Announcement.find();
+    res.status(200).json({ errorMessage: null, data });
+  } catch (err) {
+    res.status(500).json({ errorMessage: "Internal server error" });
   }
 };
